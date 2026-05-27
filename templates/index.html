@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlatOut — Барбершоп</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/"><strong>💈 FlatOut</strong></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#branches">📍 Филиалы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#servicesModal">✂️ Услуги</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#barbersModal">👨‍🦰 Барберы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/docs" target="_blank">API Docs</a>
+                    </li>
+                    <li class="nav-item" id="navLoginLink">
+                        <a class="btn btn-light ms-2" href="/login">🔐 Войти / Записаться</a>
+                    </li>
+                    <li class="nav-item d-none" id="navUserBox">
+                        <a class="btn btn-light ms-2" href="/dashboard">👤 <span id="navUserName">Профиль</span></a>
+                        <button class="btn btn-outline-light btn-sm ms-2" onclick="logout()">Выйти</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="bg-dark text-white py-5">
+        <div class="container text-center">
+            <h1 class="display-4">💈 Профессиональная стрижка и уход</h1>
+            <p class="lead">Сеть барбершопов FlatOut — три филиала, опытные мастера, онлайн-запись.</p>
+            <a href="/login" class="btn btn-light btn-lg mt-3">Записаться онлайн →</a>
+        </div>
+    </div>
+
+    <!-- Преимущества -->
+    <div class="container my-5">
+        <div class="row text-center">
+            <div class="col-md-4 mb-3">
+                <h1>⚡</h1>
+                <h5>Быстро</h5>
+                <p class="text-muted">Запись за минуту в личном кабинете.</p>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h1>👨‍🦰</h1>
+                <h5>Опытные мастера</h5>
+                <p class="text-muted">15 универсальных мастеров с проверенным рейтингом.</p>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h1>📍</h1>
+                <h5>3 удобных филиала</h5>
+                <p class="text-muted">Выбирайте ближайший к вам.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Филиалы -->
+    <div class="bg-light py-5" id="branches">
+        <div class="container">
+            <h2 class="text-center mb-4">📍 Наши филиалы</h2>
+            <div class="row" id="branchesCards">
+                <div class="col-12 text-center text-muted">
+                    <div class="spinner-border" role="status"></div>
+                    <p class="mt-2">Загрузка...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="bg-dark text-white py-5 text-center">
+        <div class="container">
+            <h3>Готовы записаться?</h3>
+            <p class="text-muted">Зарегистрируйтесь — и забронируйте удобное время.</p>
+            <a href="/login" class="btn btn-light btn-lg">Войти / Зарегистрироваться</a>
+        </div>
+    </div>
+
+    <!-- Модалка: Услуги -->
+    <div class="modal fade" id="servicesModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title">✂️ Наши услуги</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="servicesList">
+                    <div class="text-center"><div class="spinner-border"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модалка: Барберы -->
+    <div class="modal fade" id="barbersModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title">👨‍🦰 Наши барберы</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="barbersList">
+                    <div class="text-center"><div class="spinner-border"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-3">
+        <p class="mb-0">© 2026 FlatOut | FastAPI + PostgreSQL</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

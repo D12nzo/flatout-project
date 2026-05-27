@@ -1,0 +1,39 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: flatout_db
+    environment:
+      POSTGRES_USER: flatout_user
+      POSTGRES_PASSWORD: flatout_pass
+      POSTGRES_DB: flatout_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U flatout_user -d flatout_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  app:
+    build: .
+    container_name: flatout_app
+    env_file:
+      - .env
+    environment:
+      # Внутри docker-сети hostname БД — это имя сервиса.
+      DATABASE_URL: postgresql+asyncpg://flatout_user:flatout_pass@postgres:5432/flatout_db
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: ["sh", "/app/scripts/entrypoint.sh"]
+    # restart: "no" — намеренно. Если приложение упадёт, контейнер остановится,
+    # и в логах будет видна последняя ошибка, а не бесконечный спам перезапусков.
+    restart: "no"
+
+volumes:
+  postgres_data:

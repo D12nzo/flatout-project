@@ -1,0 +1,299 @@
+/* ==================================================
+   FlatOut Barbershop — фирменный стиль
+   Палитра: чёрный, жёлтый янтарный, грязно-белый.
+   Шрифты: гротеск Oswald (заголовки), Inter (текст).
+   ================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;600&display=swap');
+
+:root {
+    --fo-yellow: #F2C94C;       /* основной акцент из лого */
+    --fo-yellow-hover: #FFD96A;
+    --fo-black: #0E0E0E;        /* почти чёрный */
+    --fo-dark: #1A1A1A;
+    --fo-grey: #2A2A2A;
+    --fo-text: #E8E5DD;         /* грязно-белый для основного текста */
+    --fo-muted: #8B8B8B;
+}
+
+html, body {
+    background: var(--fo-black);
+    color: var(--fo-text);
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100%;
+}
+
+/* === Заголовки === */
+h1, h2, h3, h4, h5, .display-4, .navbar-brand {
+    font-family: 'Oswald', 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.display-4 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+}
+
+.lead {
+    color: var(--fo-text);
+    opacity: 0.85;
+}
+
+/* === Navbar === */
+.navbar-dark, .navbar.bg-dark {
+    background: var(--fo-black) !important;
+    border-bottom: 3px solid var(--fo-yellow);
+}
+.navbar-brand {
+    color: var(--fo-yellow) !important;
+    font-size: 1.3rem;
+}
+.navbar-dark .nav-link {
+    color: var(--fo-text);
+}
+.navbar-dark .nav-link:hover {
+    color: var(--fo-yellow);
+}
+
+/* === Hero === */
+.bg-dark {
+    background: var(--fo-black) !important;
+}
+.bg-light {
+    background: var(--fo-dark) !important;
+    color: var(--fo-text);
+}
+.bg-light h2, .bg-light h5, .bg-light h6 { color: var(--fo-text); }
+
+/* === Кнопки === */
+.btn-dark {
+    background: var(--fo-yellow);
+    border-color: var(--fo-yellow);
+    color: var(--fo-black);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.btn-dark:hover, .btn-dark:focus, .btn-dark:active {
+    background: var(--fo-yellow-hover) !important;
+    border-color: var(--fo-yellow-hover) !important;
+    color: var(--fo-black) !important;
+}
+.btn-dark:disabled {
+    background: var(--fo-grey);
+    border-color: var(--fo-grey);
+    color: var(--fo-muted);
+}
+
+.btn-light {
+    background: var(--fo-yellow);
+    border-color: var(--fo-yellow);
+    color: var(--fo-black) !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.btn-light:hover {
+    background: var(--fo-yellow-hover);
+    border-color: var(--fo-yellow-hover);
+}
+
+.btn-outline-light {
+    color: var(--fo-yellow);
+    border-color: var(--fo-yellow);
+}
+.btn-outline-light:hover {
+    background: var(--fo-yellow);
+    color: var(--fo-black);
+    border-color: var(--fo-yellow);
+}
+
+.btn-outline-dark {
+    color: var(--fo-text);
+    border-color: var(--fo-grey);
+    background: transparent;
+}
+.btn-outline-dark:hover {
+    background: var(--fo-grey);
+    color: var(--fo-yellow);
+    border-color: var(--fo-yellow);
+}
+
+.btn-outline-primary {
+    color: var(--fo-yellow);
+    border-color: var(--fo-yellow);
+}
+.btn-outline-primary:hover, .btn-outline-primary.active, .btn-primary {
+    background: var(--fo-yellow) !important;
+    border-color: var(--fo-yellow) !important;
+    color: var(--fo-black) !important;
+}
+
+.btn-success { background:#5cb85c; border-color:#5cb85c; }
+.btn-danger  { background:#d9534f; border-color:#d9534f; }
+
+/* btn-check active state */
+.btn-check:checked + .btn {
+    background: var(--fo-yellow);
+    border-color: var(--fo-yellow);
+    color: var(--fo-black);
+}
+
+/* === Карточки === */
+.card {
+    background: var(--fo-dark);
+    border: 1px solid var(--fo-grey);
+    color: var(--fo-text);
+}
+.card-header.bg-dark {
+    background: var(--fo-black) !important;
+    border-bottom: 2px solid var(--fo-yellow);
+}
+.card-header.bg-dark h4, .card-header.bg-dark h5 {
+    color: var(--fo-yellow);
+}
+.card-title { color: var(--fo-text); }
+
+/* === Формы === */
+.form-control, .form-select {
+    background: var(--fo-grey);
+    border: 1px solid var(--fo-grey);
+    color: var(--fo-text);
+}
+.form-control:focus, .form-select:focus {
+    background: var(--fo-grey);
+    border-color: var(--fo-yellow);
+    color: var(--fo-text);
+    box-shadow: 0 0 0 0.2rem rgba(242, 201, 76, 0.25);
+}
+.form-control::placeholder { color: var(--fo-muted); }
+.form-label { color: var(--fo-text); font-weight: 600; }
+.form-check-label { color: var(--fo-text); }
+.form-check-input:checked {
+    background-color: var(--fo-yellow);
+    border-color: var(--fo-yellow);
+}
+
+/* === Таблицы === */
+.table {
+    color: var(--fo-text);
+}
+.table thead.table-dark {
+    background: var(--fo-black);
+    color: var(--fo-yellow);
+}
+.table thead.table-dark th {
+    background: var(--fo-black);
+    color: var(--fo-yellow);
+    border-color: var(--fo-yellow);
+}
+.table-hover tbody tr:hover {
+    background: rgba(242, 201, 76, 0.08);
+    color: var(--fo-text);
+}
+.table > :not(caption) > * > * {
+    background: transparent;
+    color: inherit;
+    border-color: var(--fo-grey);
+}
+
+/* === Список услуг внутри модалки === */
+.list-group-item {
+    background: var(--fo-dark);
+    color: var(--fo-text);
+    border-color: var(--fo-grey);
+}
+.text-primary { color: var(--fo-yellow) !important; }
+
+/* === Модалки === */
+.modal-content {
+    background: var(--fo-dark);
+    color: var(--fo-text);
+}
+.modal-header.bg-dark {
+    background: var(--fo-black) !important;
+    border-bottom: 2px solid var(--fo-yellow);
+}
+.modal-header h5 { color: var(--fo-yellow); }
+.btn-close-white { filter: invert(1); }
+
+/* === Alerts (адаптация под тёмную тему) === */
+.alert-info {
+    background: rgba(242, 201, 76, 0.1);
+    border-color: var(--fo-yellow);
+    color: var(--fo-text);
+}
+.alert-success {
+    background: rgba(92, 184, 92, 0.15);
+    border-color: #5cb85c;
+    color: #d4edda;
+}
+.alert-danger {
+    background: rgba(217, 83, 79, 0.15);
+    border-color: #d9534f;
+    color: #f8d7da;
+}
+.alert-warning {
+    background: rgba(242, 201, 76, 0.15);
+    border-color: var(--fo-yellow);
+    color: var(--fo-text);
+}
+
+/* === Badge цвета (для статусов) === */
+.badge.bg-warning { background: var(--fo-yellow) !important; color: var(--fo-black) !important; }
+.badge.bg-success { background: #5cb85c !important; }
+.badge.bg-primary { background: var(--fo-yellow) !important; color: var(--fo-black) !important; }
+.badge.bg-info    { background: #6fc7d6 !important; color: var(--fo-black) !important; }
+.badge.bg-danger  { background: #d9534f !important; }
+.badge.bg-secondary { background: var(--fo-grey) !important; color: var(--fo-text) !important; }
+
+/* === Tabs === */
+.nav-tabs {
+    border-bottom: 2px solid var(--fo-yellow);
+}
+.nav-tabs .nav-link {
+    color: var(--fo-text);
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.nav-tabs .nav-link:hover {
+    border-bottom-color: var(--fo-muted);
+    color: var(--fo-yellow);
+}
+.nav-tabs .nav-link.active {
+    background: transparent;
+    color: var(--fo-yellow);
+    border-bottom-color: var(--fo-yellow);
+}
+
+/* === Spinner === */
+.spinner-border { color: var(--fo-yellow); }
+
+/* === Footer === */
+footer.bg-dark { background: var(--fo-black) !important; border-top: 1px solid var(--fo-grey); }
+footer.bg-dark p { color: var(--fo-muted); }
+
+/* === Hero иконки/числа === */
+.text-muted { color: var(--fo-muted) !important; }
+
+/* === Утилиты === */
+.text-danger { color: #ff8a8a !important; }
+
+/* Текстовое поле в шаге выбора слота */
+#bookStepArea {
+    background: var(--fo-grey);
+    border: 1px solid var(--fo-grey) !important;
+}
+.text-success { color: var(--fo-yellow) !important; }
+
+/* Скроллбары в тёмной теме */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--fo-dark); }
+::-webkit-scrollbar-thumb { background: var(--fo-grey); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--fo-yellow); }

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет — FlatOut</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/dashboard">💈 FlatOut — Личный кабинет</a>
+            <div>
+                <a class="btn btn-outline-light btn-sm me-2" href="/">На главную</a>
+                <span class="text-white me-3" id="userName"></span>
+                <button class="btn btn-outline-light btn-sm" onclick="logout()">Выход</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Вкладки -->
+        <ul class="nav nav-tabs mb-3" id="dashTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="tab-apts-btn" data-bs-toggle="tab"
+                        data-bs-target="#tab-apts" type="button">📋 Записи</button>
+            </li>
+            <!-- Вкладка "Записаться" видна только клиенту, скрывается из JS для других ролей -->
+            <li class="nav-item d-none" id="tab-booking-li" role="presentation">
+                <button class="nav-link" id="tab-booking-btn" data-bs-toggle="tab"
+                        data-bs-target="#tab-booking" type="button">✂️ Записаться</button>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <!-- ============ ВКЛАДКА: записи ============ -->
+            <div class="tab-pane fade show active" id="tab-apts" role="tabpanel">
+                <!-- Статистика -->
+                <div class="row mb-4">
+                    <div class="col-md-3"><div class="card text-center"><div class="card-body">
+                        <h1 id="totalAppointments">0</h1><p class="text-muted">Всего</p>
+                    </div></div></div>
+                    <div class="col-md-3"><div class="card text-center"><div class="card-body">
+                        <h1 id="pendingAppointments">0</h1><p class="text-muted">Ожидают</p>
+                    </div></div></div>
+                    <div class="col-md-3"><div class="card text-center"><div class="card-body">
+                        <h1 id="confirmedAppointments">0</h1><p class="text-muted">Подтверждены</p>
+                    </div></div></div>
+                    <div class="col-md-3"><div class="card text-center"><div class="card-body">
+                        <h1 id="completedAppointments">0</h1><p class="text-muted">Завершены</p>
+                    </div></div></div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">📋 <span id="apts-title">Записи</span></h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="appointmentsList">
+                            <div class="text-center py-4"><div class="spinner-border"></div>
+                                <p class="mt-2">Загрузка...</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============ ВКЛАДКА: запись (форма) ============ -->
+            <div class="tab-pane fade" id="tab-booking" role="tabpanel">
+                <div class="card">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">✂️ Новая запись</h5>
+                    </div>
+                    <div class="card-body">
+
+                        <!-- Шаг 1: филиал, услуга, дата -->
+                        <div class="mb-3">
+                            <label class="form-label"><strong>1. Филиал</strong></label>
+                            <div id="bookBranches">
+                                <div class="text-muted small">Загрузка филиалов...</div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label"><strong>2. Услуга</strong></label>
+                            <select class="form-select" id="bookService">
+                                <option value="">Загрузка услуг...</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label"><strong>3. Дата</strong></label>
+                            <input type="date" class="form-control" id="bookDate">
+                        </div>
+
+                        <!-- Шаг 2: режим выбора слота -->
+                        <div class="mb-3">
+                            <label class="form-label"><strong>4. Способ выбора времени</strong></label>
+                            <div class="btn-group w-100" role="group">
+                                <input type="radio" class="btn-check" name="bookMode"
+                                       id="modeByTime" value="time" checked>
+                                <label class="btn btn-outline-dark" for="modeByTime">
+                                    🕐 Сначала время → потом мастер
+                                </label>
+                                <input type="radio" class="btn-check" name="bookMode"
+                                       id="modeByBarber" value="barber">
+                                <label class="btn btn-outline-dark" for="modeByBarber">
+                                    👨‍🦰 Сначала мастер → потом время
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Содержимое: меняется в зависимости от режима -->
+                        <div id="bookStepArea" class="border rounded p-3 mb-3" style="min-height:140px;">
+                            <div class="text-muted small">
+                                Выберите филиал, услугу и дату — появится выбор времени/мастера.
+                            </div>
+                        </div>
+
+                        <!-- Комментарий -->
+                        <div class="mb-3">
+                            <label class="form-label">Комментарий (необязательно)</label>
+                            <textarea class="form-control" id="bookComment"
+                                      rows="2" maxlength="500" placeholder="Ваши пожелания..."></textarea>
+                        </div>
+
+                        <!-- Текущий выбор -->
+                        <div id="bookSelection" class="alert alert-info d-none small"></div>
+
+                        <button class="btn btn-dark btn-lg w-100" id="bookSubmit" disabled>
+                            ✂️ Подтвердить запись
+                        </button>
+
+                        <div id="bookSuccess" class="alert alert-success mt-3 d-none"></div>
+                        <div id="bookError"   class="alert alert-danger mt-3 d-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модалка подтверждения записи -->
+    <div class="modal fade" id="confirmBookingModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title">✂️ Проверьте данные записи</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="confirmModalBody">
+                    <!-- Заполняется из booking.js -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Назад</button>
+                    <button type="button" class="btn btn-dark" id="confirmBookingButton">✅ Записаться</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/dashboard.js"></script>
+    <script src="/static/js/booking.js"></script>
+</body>
+</html>
