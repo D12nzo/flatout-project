@@ -13,7 +13,7 @@
 ## 📸 Скриншоты
 
 ### Главная страница
-![Главная страница с филиалами](docs/screenshots/main.png)
+![Главная страница с филиалами](docs/screenshots/main.jpg)
 
 ### Форма записи
 
@@ -21,8 +21,8 @@
 
 <table>
   <tr>
-    <td><img src="docs/screenshots/app1.png" alt="Режим: сначала время"></td>
-    <td><img src="docs/screenshots/app2.png" alt="Режим: сначала мастер"></td>
+    <td><img src="docs/screenshots/app1.jpg" alt="Режим: сначала время"></td>
+    <td><img src="docs/screenshots/app2.jpg" alt="Режим: сначала мастер"></td>
   </tr>
   <tr>
     <td align="center"><i>Сначала время → потом мастер</i></td>
@@ -31,10 +31,10 @@
 </table>
 
 ### Модалка подтверждения с расчётом цены
-![Проверка данных перед записью](docs/screenshots/app3.png)
+![Проверка данных перед записью](docs/screenshots/app3.jpg)
 
 ### Дашборд менеджера
-![Записи филиала](docs/screenshots/dash.png)
+![Записи филиала](docs/screenshots/dash.jpg)
 
 ---
 
