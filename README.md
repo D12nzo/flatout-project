@@ -5,8 +5,36 @@
 ![Python](https://img.shields.io/badge/Python-3.11-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.109-009688)
 ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0_async-red)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791)git 
 ![Docker](https://img.shields.io/badge/Docker-Compose-2496ED)
+
+---
+
+## 📸 Скриншоты
+
+### Главная страница
+![Главная страница с филиалами](docs/screenshots/main.png)
+
+### Форма записи
+
+Два режима выбора слота: «сначала время → потом мастер» и «сначала мастер → потом время».
+
+<table>
+  <tr>
+    <td><img src="docs/screenshots/app1.png" alt="Режим: сначала время"></td>
+    <td><img src="docs/screenshots/app2.png" alt="Режим: сначала мастер"></td>
+  </tr>
+  <tr>
+    <td align="center"><i>Сначала время → потом мастер</i></td>
+    <td align="center"><i>Сначала мастер → потом время</i></td>
+  </tr>
+</table>
+
+### Модалка подтверждения с расчётом цены
+![Проверка данных перед записью](docs/screenshots/app3.png)
+
+### Дашборд менеджера
+![Записи филиала](docs/screenshots/dash.png)
 
 ---
 
